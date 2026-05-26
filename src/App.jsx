@@ -77,15 +77,15 @@ function Toast({ message, type = "success", visible, onClose }) {
 }
 
 // ─── Audio Player Component ─────────────────────────────────
+// ─── Audio Player Component ─────────────────────────────────
 function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
-    audioRef.current = new Audio(
-      "https://server12.mp3quran.net/adhan/takberat_al3eed.mp3"
-    );
+    // 👈 غيرنا الرابط الخارجي بالمسار المحلي المباشر من الجذور
+    audioRef.current = new Audio("/takbeerat.mp3");
     audioRef.current.loop = true;
     audioRef.current.volume = 0.7;
 
@@ -102,7 +102,7 @@ function AudioPlayer() {
     if (isPlaying) {
       audioRef.current.pause();
     } else {
-      audioRef.current.play().catch(() => {});
+      audioRef.current.play().catch((err) => console.log("Audio play error:", err));
     }
     setIsPlaying(!isPlaying);
   };
