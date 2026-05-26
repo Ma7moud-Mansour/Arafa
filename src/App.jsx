@@ -196,8 +196,8 @@ function Timeline() {
   };
 
   return (
-    <div className="mt-10 space-y-6">
-      <h2 className="text-xl font-bold text-slate-100 mb-6 flex items-center gap-2.5 border-r-4 border-amber-500 pr-3">
+    <div className="mt-12 space-y-6">
+      <h2 className="text-xl font-bold text-slate-100 mb-8 flex items-center gap-2.5 border-r-4 border-amber-500 pr-3">
         <BookOpen size={22} className="text-amber-400" />
         برنامج يوم عرفة
       </h2>
@@ -206,7 +206,7 @@ function Timeline() {
         {/* Vertical line adjustment */}
         <div className="absolute right-[23px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-amber-500/40 via-slate-700 to-transparent" />
 
-        <div className="space-y-5">
+        <div className="space-y-10">
           {scheduleItems.map((item) => {
             const isActive = activeItems[item.id];
             const Icon = iconMap[item.icon] || Sun;
@@ -230,7 +230,7 @@ function Timeline() {
 
                 {/* Content Box with solid paddings */}
                 <div
-                  className={`flex-1 p-6 rounded-2xl border transition-all duration-300 space-y-3 ${
+                  className={`flex-1 p-6 rounded-2xl border transition-all duration-300 space-y-4 ${
                     isActive
                       ? "bg-amber-500/[0.02] border-amber-500/30 shadow-md"
                       : "bg-slate-800/40 border-slate-700/50 group-hover:border-slate-600/70 shadow-sm"
@@ -255,7 +255,7 @@ function Timeline() {
                   >
                     {item.title}
                   </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed font-normal">
+                  <p className="text-sm text-slate-400 leading-loose font-normal">
                     {item.description}
                   </p>
                 </div>
@@ -271,9 +271,9 @@ function Timeline() {
 // ─── Tab 1: Home & Schedule ─────────────────────────────────
 function HomeTab() {
   return (
-    <div className="space-y-8 pb-8">
+    <div className="space-y-10 pb-10">
       {/* Hero Header */}
-      <div className="text-center pt-4 space-y-3">
+      <div className="text-center pt-6 space-y-4">
         <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-1.5 shadow-sm">
           <Moon size={13} className="text-amber-400" />
           <span className="text-xs text-amber-400 font-bold">
@@ -325,7 +325,7 @@ function ZikrCard({ zikr }) {
   return (
     <div
       onClick={increment}
-      className={`relative overflow-hidden rounded-2xl border p-6 transition-all duration-200 select-none space-y-4 ${
+      className={`relative overflow-hidden rounded-3xl border p-8 transition-all duration-200 select-none space-y-6 ${
         animating ? "tap-animate" : ""
       } ${
         isComplete
@@ -354,7 +354,7 @@ function ZikrCard({ zikr }) {
       </div>
 
       {/* Zikr text */}
-      <p className="text-lg font-bold text-slate-100 leading-relaxed text-right">
+      <p className="text-lg font-bold text-slate-100 leading-loose text-right">
         {zikr.text}
       </p>
 
@@ -366,7 +366,7 @@ function ZikrCard({ zikr }) {
       )}
 
       {/* Counter & Progress */}
-      <div className="space-y-3 pt-1">
+      <div className="space-y-3 pt-2">
         <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-1">
             <span
@@ -406,8 +406,8 @@ function ZikrCard({ zikr }) {
 // ─── Tab 2: Azkar & Tasbeeh ─────────────────────────────────
 function AzkarTab() {
   return (
-    <div className="space-y-6 pb-8">
-      <div className="text-center pt-4 space-y-1">
+    <div className="space-y-8 pb-10">
+      <div className="text-center pt-6 space-y-2">
         <h1 className="text-2xl font-bold text-slate-50">
           الأذكار والمسبحة
         </h1>
@@ -416,9 +416,11 @@ function AzkarTab() {
         </p>
       </div>
 
-      <div className="space-y-4 pt-2">
+      <div className="divide-y divide-slate-700/30 space-y-0">
         {azkarItems.map((zikr) => (
-          <ZikrCard key={zikr.id} zikr={zikr} />
+          <div key={zikr.id} className="py-8 first:pt-0 last:pb-0">
+            <ZikrCard zikr={zikr} />
+          </div>
         ))}
       </div>
     </div>
@@ -430,7 +432,7 @@ function DuaCard({ dua, isSelected, onToggle }) {
   return (
     <div
       onClick={onToggle}
-      className={`flex items-start gap-4 rounded-2xl border p-5 transition-all duration-200 cursor-pointer select-none active:scale-[0.99] group ${
+      className={`flex items-start gap-5 rounded-2xl border p-7 transition-all duration-200 cursor-pointer select-none active:scale-[0.99] group ${
         isSelected
           ? "bg-amber-500/[0.03] border-amber-500/50 shadow-md"
           : "bg-slate-800/50 border-slate-700/60 hover:border-slate-600 shadow-sm"
@@ -438,7 +440,7 @@ function DuaCard({ dua, isSelected, onToggle }) {
     >
       {/* Text area - flows beautifully to the right */}
       <div className="flex-1 min-w-0">
-        <p className="text-base font-bold text-slate-100 leading-relaxed text-right">
+        <p className="text-base font-bold text-slate-100 leading-loose text-right">
           {dua.text}
         </p>
       </div>
@@ -510,9 +512,9 @@ function DuaTab() {
   };
 
   return (
-    <div className="space-y-6 pb-8">
+    <div className="space-y-8 pb-10">
       {/* Header */}
-      <div className="text-center pt-4 space-y-1">
+      <div className="text-center pt-6 space-y-2">
         <h1 className="text-2xl font-bold text-slate-50">
           مُولد الأدعية المخصص
         </h1>
@@ -552,7 +554,7 @@ function DuaTab() {
       </div>
 
       {/* Category filters - fixed clipping and optimized margins */}
-      <div className="flex gap-2.5 overflow-x-auto pb-3 pt-1 no-scrollbar -mx-5 px-5 select-none">
+      <div className="flex gap-2.5 overflow-x-auto pb-4 pt-2 no-scrollbar -mx-5 px-5 select-none">
         {duaCategories.map((cat) => {
           const Icon = iconMap[cat.icon] || Layers;
           const isActive = activeCategory === cat.id;
@@ -574,14 +576,15 @@ function DuaTab() {
       </div>
 
       {/* Dua Cards with solid padding rhythms */}
-      <div className="space-y-4 pt-1">
+      <div className="divide-y divide-slate-700/20 space-y-0 pt-3">
         {filteredDuas.map((dua) => (
-          <DuaCard
-            key={dua.id}
-            dua={dua}
-            isSelected={selectedDuas.includes(dua.id)}
-            onToggle={() => toggleDua(dua.id)}
-          />
+          <div key={dua.id} className="py-4 first:pt-0 last:pb-0">
+            <DuaCard
+              dua={dua}
+              isSelected={selectedDuas.includes(dua.id)}
+              onToggle={() => toggleDua(dua.id)}
+            />
+          </div>
         ))}
       </div>
 
@@ -623,7 +626,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-900" dir="rtl">
       {/* Constrained layout for a native, premium mobile app experience */}
-      <main className="max-w-md mx-auto px-5 pt-4 pb-32">
+      <main className="max-w-md mx-auto px-5 pt-6 pb-36">
         {renderTab()}
       </main>
 
